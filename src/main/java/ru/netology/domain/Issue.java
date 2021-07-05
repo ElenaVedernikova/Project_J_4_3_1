@@ -3,12 +3,13 @@ package ru.netology.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.HashSet;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Issue extends HashSet<Issue> implements Comparable<Issue> {
+public class Issue extends HashSet<Issue> {
     private int id;
     private String title;
     private String write;
@@ -30,8 +31,4 @@ public class Issue extends HashSet<Issue> implements Comparable<Issue> {
 
     }
 
-    @Override
-    public int compareTo(Issue o) {
-        return this.countComment - o.countComment;
-    }
 }
