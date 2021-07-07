@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 
-@EqualsAndHashCode(callSuper = true)
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Labels extends HashSet<Labels> {
+public class Labels {
     private String lable;
 
 }

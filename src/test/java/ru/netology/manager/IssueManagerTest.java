@@ -13,10 +13,10 @@ class IssueManagerTest {
     private IssueRepository repository = new IssueRepository();
     private IssueManager manager = new IssueManager(repository);
 
-    private Issue issue1 = new Issue(1, "Issue1", "Write1", true, new Authors("Ivanov"), new Assignee("Petrov"), new Labels("progress"), 15);
-    private Issue issue2 = new Issue(2, "Issue2", "Write2", false, new Authors("Petrov"), new Assignee("Ivanov"), new Labels("bug"), 11);
-    private Issue issue3 = new Issue(3, "Issue3", "Write3", false, new Authors("Ivanov"), new Assignee("Petrov"), new Labels("bug"), 1);
-    private Issue issue4 = new Issue(4, "Issue4", "Write4", true, new Authors("Petrov"), new Assignee("Ivanov"), new Labels("progress"), 20);
+    private Issue issue1 = new Issue(1, "Issue1", "Write1", true, "Ivanov", "Petrov", new Labels("progress"), 15);
+    private Issue issue2 = new Issue(2, "Issue2", "Write2", false, "Petrov", "Ivanov", new Labels("bug"), 11);
+    private Issue issue3 = new Issue(3, "Issue3", "Write3", false, "Ivanov", "Petrov", new Labels("bug"), 1);
+    private Issue issue4 = new Issue(4, "Issue4", "Write4", true, "Petrov", "Ivanov", new Labels("progress"), 20);
 
     @Test
     public void shouldFindByAuthor() {
@@ -25,7 +25,7 @@ class IssueManagerTest {
         manager.add(issue3);
         manager.add(issue4);
 
-        Collection<Issue> actual = manager.filterByAuthor(new Authors("Ivanov"));
+        Collection<Issue> actual = manager.filterByAuthor("Ivanov");
         List<Issue> expected = Arrays.asList(issue1, issue3);
 
         assertEquals(expected, actual);
@@ -35,7 +35,7 @@ class IssueManagerTest {
     public void shouldFindByOneAuthor() {
         manager.add(issue4);
 
-        Collection<Issue> actual = manager.filterByAuthor(new Authors("Petrov"));
+        Collection<Issue> actual = manager.filterByAuthor("Petrov");
         List<Issue> expected = Arrays.asList(issue4);
 
         assertEquals(expected, actual);
@@ -44,7 +44,7 @@ class IssueManagerTest {
     @Test
     public void shouldFindByEmptyAuthor() {
 
-        Collection<Issue> actual = manager.filterByAuthor(new Authors());
+        Collection<Issue> actual = manager.filterByAuthor("Petrov");
         List<Issue> expected = Arrays.asList();
 
         assertEquals(expected, actual);
@@ -57,7 +57,7 @@ class IssueManagerTest {
         manager.add(issue3);
         manager.add(issue4);
 
-        Collection<Issue> actual = manager.filterByAssignee(new Assignee("Petrov"));
+        Collection<Issue> actual = manager.filterByAssignee("Petrov");
         List<Issue> expected = Arrays.asList(issue1, issue3);
 
         assertEquals(expected, actual);
@@ -67,7 +67,7 @@ class IssueManagerTest {
     public void shouldFindByOneAssignee() {
         manager.add(issue4);
 
-        Collection<Issue> actual = manager.filterByAssignee(new Assignee("Ivanov"));
+        Collection<Issue> actual = manager.filterByAssignee("Ivanov");
         List<Issue> expected = Arrays.asList(issue4);
 
         assertEquals(expected, actual);
@@ -76,7 +76,7 @@ class IssueManagerTest {
     @Test
     public void shouldFindByEmptyAssignee() {
 
-        Collection<Issue> actual = manager.filterByAssignee(new Assignee());
+        Collection<Issue> actual = manager.filterByAssignee("Ivanov");
         List<Issue> expected = Arrays.asList();
 
         assertEquals(expected, actual);

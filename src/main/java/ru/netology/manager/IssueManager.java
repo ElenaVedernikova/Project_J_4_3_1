@@ -27,20 +27,20 @@ public class IssueManager {
         return result;
     }
 
-    public List<Issue> filterByAuthor(Authors author) {
+    public List<Issue> filterByAuthor(String author) {
         List<Issue> result = new ArrayList<>();
         for (Issue issue : repository.getAll()) {
-            if (issue.getAuthors().contains(author)) {
+            if (issue.getAuthor().contains(author)) {
                 result.add(issue);
             }
         }
         return result;
     }
 
-    public List<Issue> filterByAssignee(Assignee assignee) {
+    public List<Issue> filterByAssignee(String assignee) {
         List<Issue> result = new ArrayList<>();
         for (Issue issue : repository.getAll()) {
-            if (issue.getAssignees().contains(assignee)) {
+            if (issue.getAssignee().contains(assignee)) {
                 result.add(issue);
             }
         }
